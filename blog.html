@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blogging Platform</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background: #333;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+        h1 {
+            margin: 0;
+        }
+        form {
+            background: #fff;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid #ddd;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        button {
+            background: #333;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .posts {
+            margin: 20px 0;
+        }
+        .post {
+            background: #fff;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>My Blog</h1>
+    </header>
+    <div class="container">
+        <form id="postForm">
+            <input type="text" id="title" placeholder="Title" required>
+            <textarea id="content" rows="5" placeholder="Content" required></textarea>
+            <button type="submit">Post</button>
+        </form>
+        <div class="posts" id="posts"></div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const postForm = document.getElementById('postForm');
+            const postsContainer = document.getElementById('posts');
+            
+            // Load posts from localStorage
+            const loadPosts = () => {
+                const posts = JSON.parse(localStorage.getItem('posts')) || [];
+                postsContainer.innerHTML = '';
+                posts.forEach(post => {
+                    const postElement = document.createElement('div');
+                    postElement.classList.add('post');
+                    postElement.innerHTML = `
+                        <h2>${post.title}</h2>
+                        <p>${post.content}</p>
+                    `;
+                    postsContainer.appendChild(postElement);
+                });
+            };
+
+            // Save post to localStorage
+            const savePost = (post) => {
+                const posts = JSON.parse(localStorage.getItem('posts')) || [];
+                posts.push(post);
+                localStorage.setItem('posts', JSON.stringify(posts));
+                loadPosts();
+            };
+
+            // Handle form submission
+            postForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const title = document.getElementById('title').value;
+                const content = document.getElementById('content').value;
+                const post = { title, content };
+                savePost(post);
+                postForm.reset();
+            });
+
+            // Initial load
+            loadPosts();
+        });
+    </script>
+</body>
+</html>
+
