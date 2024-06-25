@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Detail</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background: #333;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+        h1 {
+            margin: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .product-detail {
+            text-align: center;
+        }
+        .product-detail img {
+            max-width: 100%;
+            height: auto;
+        }
+        .product-detail h2 {
+            margin: 10px 0;
+        }
+        .product-detail p {
+            margin: 10px 0;
+        }
+        .product-detail button {
+            background: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Product Detail</h1>
+    </header>
+    <div class="container">
+        <div class="product-detail">
+            <img src="C:\Users\Srujana\Pictures\product1.jpg" alt="Product 1">
+            <h2>Product 1</h2>
+            <p>$10.00</p>
+            <button onclick="addToCart('Product 1', 10.00)">Add to Cart</button>
+        </div>
+    </div>
+    <script>
+        function addToCart(productName, productPrice) {
+            alert(productName + " added to cart!");
+            // In a real application, you would also update the shopping cart display
+        }
+    </script>
+</body>
+</html>

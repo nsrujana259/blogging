@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background: #333;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+        h1 {
+            margin: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+        }
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+        .cart-item p {
+            margin: 0;
+        }
+        .cart-total {
+            text-align: right;
+            padding: 20px 0;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Shopping Cart</h1>
+    </header>
+    <div class="container" id="cartContainer">
+        <!-- Cart items will be dynamically added here -->
+    </div>
+    <script>
+        // Sample cart items (in a real application, these would come from a backend)
+        const cartItems = [
+            { name: 'Product 1', price: 10.00, quantity: 1 },
+            { name: 'Product 2', price: 15.00, quantity: 2 }
+        ];
+
+        function renderCart() {
+            const cartContainer = document.getElementById('cartContainer');
+            cartContainer.innerHTML = ''; // Clear existing content
+            let total = 0;
+
+            cartItems.forEach(item => {
+                total += item.price * item.quantity;
+                const cartItem = document.createElement('div');
+                cartItem.classList.add('cart-item');
+                cartItem.innerHTML = `
+                    <p>${item.name}</p>
+                    <p>${item.price.toFixed(2)} x ${item.quantity}</p>
+                    <p>${(item.price * item.quantity).toFixed(2)}</p>
+                `;
+                cartContainer.appendChild(cartItem);
+            });
+
+            const cartTotal = document.createElement('div');
+            cartTotal.classList.add('cart-total');
+            cartTotal.innerText = `Total: $${total.toFixed(2)}`;
+            cartContainer.appendChild(cartTotal);
+        }
+
+        renderCart();
+    </script>
+</body>
+</html>
